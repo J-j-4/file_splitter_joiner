@@ -1,6 +1,8 @@
+import argparse
+import sys
+
+
 # define the function to split the file into smaller chunks
-
-
 def splitFile(inputFile, chunkSize):
     # read the contents of the file
     f = open(inputFile, 'rb')
@@ -11,7 +13,10 @@ def splitFile(inputFile, chunkSize):
     bytes = len(data)
 
 # calculate the number of chunks to be created
-    noOfChunks = bytes / chunkSize
+    if sys.version_info.major == 3:
+        noOfChunks = int(bytes / chunkSize)
+    elif sys.version_info.major == 2:
+        noOfChunks = bytes / chunkSize
     if(bytes % chunkSize):
         noOfChunks += 1
 
@@ -20,7 +25,7 @@ def splitFile(inputFile, chunkSize):
     f = open(metadata_file, 'w')
     f.write('input file = ' + inputFile + '\n')
     f.write('Number of Chunks = ' + str(noOfChunks) + '\n')
-    f.write('Chunk Size = ' + str(chunkSize))
+    f.write('Chunk Size = ' + str(chunkSize) + '\n')
     f.close()
 
     chunkNames = []
@@ -30,9 +35,15 @@ def splitFile(inputFile, chunkSize):
         fn1 = "%s-chunk-%s-Of-%s" % (inputFile, j, noOfChunks)
         chunkNames.append(fn1)
         f = open(fn1, 'wb')
-#        f.write(data[i:i + chunkSize])
         f.write(data[i:i + chunkSize])
         f.close()
 
 
-splitFile('one.mp4', 10000000)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('filename', action="store", help='provide input filename as first argument')
+    parser.add_argument('chuncksize', action="store", type=int,
+                        help='provide chucksize as second arguments.. Ex: 10000000 = 10 MB')
+    args = parser.parse_args()
+    if args.filename and args.chuncksize:
+        splitFile(args.filename, args.chuncksize)
