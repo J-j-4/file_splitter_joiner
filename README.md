@@ -7,15 +7,17 @@ I browsed the script from the above location, then went to the https://gist.gith
 Got the code and modified it and split it into two different files.
 
 USAGE for splitter.py:
-python3 ./splitter.py -h
-python3 ./splitter.py orig.mp4 10000000
+    python3 ./splitter.py -h
+    python3 ./splitter.py orig.mp4 10000000
+
 Where
     orig.mp4 - is your original file that you want the splitter to split!
     10000000 - is equal to 10MB.  Change this value based on your need.
 
 USAGE for joiner.py:
-python3 ./joiner.py -h
-python3 ./joiner.py orig.mp4 newfile.mp4 11
+    python3 ./joiner.py -h
+    python3 ./joiner.py orig.mp4 newfile.mp4 11
+
 Where
     orig.mp4 - is your original file that you have split with splitter!
     newfile.mp4 - would be the name of your new file that you want to the joiner to create
