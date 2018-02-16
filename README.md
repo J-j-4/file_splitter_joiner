@@ -18,8 +18,8 @@ orig.mp4 - is your original file that you want the splitter to split!
 
 ###### USAGE for joiner.py:
 ```
-    python3 ./joiner.py -h
-    python3 ./joiner.py orig.mp4 newfile.mp4 11
+python3 ./joiner.py -h
+python3 ./joiner.py orig.mp4 newfile.mp4 11
 
 Where:
 orig.mp4 - is your original file that you have split with splitter!
